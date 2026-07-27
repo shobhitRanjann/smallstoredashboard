@@ -1,0 +1,41 @@
+#spring:
+#  application:
+#    name: smallstoredashboard
+#  datasource:
+#    url: ${DB_URL:jdbc:postgresql://localhost:5432/dashboardblog}
+#    username: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:test}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format-sql: false
+#      show-sql: false
+server:
+  port: 8182
+spring:
+  application:
+    name: smallstoredashboard
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/smallstorebackend}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:test}
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  flyway:
+    enabled: true
+    baseline-on-migrate: true  # Ensures Flyway runs on an existing database
+    locations: classpath:db/migration
+    logging:
+      level:
+        org:
+          flywaydb: DEBUG
+  websocket:
+    message-size-limit: 128KB
+    buffer-size-limit: 512KB
