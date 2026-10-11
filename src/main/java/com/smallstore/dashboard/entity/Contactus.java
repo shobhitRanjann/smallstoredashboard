@@ -2,10 +2,12 @@ package com.smallstore.dashboard.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 
 
 @Entity
 @Table(name = "sm_contactus")
+@Getter
 @Builder
 public class Contactus {
     @Id

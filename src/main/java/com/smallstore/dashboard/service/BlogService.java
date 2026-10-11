@@ -74,7 +74,13 @@ public class BlogService {
     }
 
     public Blog findByBlogId(String id) {
-        return blogRepository.findById(Long.valueOf(id)).orElseThrow();
+        try {
+            Long blogId = Long.valueOf(id);
+            return blogRepository.findById(blogId).orElse(null);
+        } catch (Exception e) {
+            log.warn("Invalid blog id requested: {}", id);
+            return null;
+        }
     }
 }
 

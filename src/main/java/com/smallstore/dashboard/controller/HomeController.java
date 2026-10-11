@@ -61,11 +61,14 @@ public class HomeController {
     public ResponseEntity<Blog> getBlogById(@PathVariable("id") String id, @PathVariable("title") String title){
 //        List<Blog> blog = blogService.getAllBlogs();
         log.info(id + "    "+title );
-        if(id!=null && title!=null){
+        if(id!=null && !id.isBlank() && title!=null && !title.isBlank()){
             Blog blog = blogService.findByBlogId(id);
-            return ResponseEntity.ok(blog);
+            if (blog != null) {
+                return ResponseEntity.ok(blog);
+            }
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(null);
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/upload")

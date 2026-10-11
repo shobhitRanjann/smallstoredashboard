@@ -39,3 +39,23 @@ spring:
   websocket:
     message-size-limit: 128KB
     buffer-size-limit: 512KB
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${contact.mail.from}
+    password: ${contact.mail.password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+contact:
+  mail:
+    from: ${mailfrom}
+    password: ${mailpassword}
+    to: ${mailto}
